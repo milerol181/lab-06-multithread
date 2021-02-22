@@ -3,15 +3,13 @@
 #include <thread>
 #include <csignal>
 
-void sig_handler(int sig)
+void sig_handler_exit(int sig)
 {
-  std::cout << "--------------------" << std::endl;
-  std::cout << sig << std::endl << "STOPPED PROCESS";
-  exit(0);
+  exit(sig);
 }
 
 int main(int argc, char *argv[]) {
-  signal(SIGINT, &sig_handler);
+  signal(SIGINT, &sig_handler_exit);
   std::cin.tie(nullptr);
     init();
     unsigned thread_count;
