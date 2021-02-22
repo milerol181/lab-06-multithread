@@ -17,10 +17,12 @@
 #include <boost/log/utility/setup.hpp>
 #include <csignal>
 
+bool work = true;
+
 
 void enumeration() {
   const std::string null_string = "0000";
-  while (true)
+  while (work)
   {
     std::string input_rand = std::to_string(std::rand());
     std::string hash_key = picosha2::hash256_hex_string(input_rand);

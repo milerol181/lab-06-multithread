@@ -1,9 +1,18 @@
 #include <enumeration.hpp>
 #include "logging.hpp"
 #include <thread>
+#include <csignal>
+
+void sig_handler(int sig)
+{
+  std::cout << "--------------------" << std::endl;
+  std::cout << sig << std::endl << "STOPPED PROCESS";
+  exit(0);
+}
 
 int main(int argc, char *argv[]) {
-    std::cin.tie(nullptr);
+  signal(SIGINT, &sig_handler);
+  std::cin.tie(nullptr);
     init();
     unsigned thread_count;
     if (argc >= 2) {thread_count = boost::lexical_cast<unsigned>(argv[1]);}
