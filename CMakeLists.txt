@@ -34,7 +34,7 @@ find_package(Threads)
 
 add_library(${PROJECT_NAME} STATIC
   # enum your files and delete this comment
-        include/enumeration.hpp include/logging.hpp)
+        include/enumeration.hpp include/logging.hpp sources/source.cpp sources/source.cpp)
 
 add_executable(demo
   ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp
