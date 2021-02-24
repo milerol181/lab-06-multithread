@@ -32,15 +32,15 @@ find_package(GTest CONFIG REQUIRED)
 find_package(Boost CONFIG REQUIRED filesystem log log_setup system thread)
 find_package(Threads)
 
-add_library(${PROJECT_NAME} STATIC
+add_library(${PROJECT_NAME} INTERFACE)
   # enum your files and delete this comment
-        include/enumeration.hpp include/logging.hpp sources/source.cpp sources/source.cpp)
+
 
 add_executable(demo
   ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(${PROJECT_NAME} INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include>"
 )
@@ -66,7 +66,7 @@ if(BUILD_COVERAGE)
   set(ENABLE_COVERAGE ON CACHE BOOL "Enable coverage build." FORCE)
   list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/tools/coverage/cmake")
   find_package(codecov)
-  add_coverage(${PROJECT_NAME})
+  #add_coverage(${PROJECT_NAME})
   add_coverage(tests)
   coverage_evaluate()
 endif()
