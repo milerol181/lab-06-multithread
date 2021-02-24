@@ -18,8 +18,6 @@
 #include <csignal>
 
 bool work = true;
-
-
 void enumeration() {
   const std::string null_string = "0000";
   while (work)
@@ -28,21 +26,20 @@ void enumeration() {
     std::string hash_key = picosha2::hash256_hex_string(input_rand);
     if (hash_key.substr(hash_key.size() - null_string.size()) ==
         null_string) {
-      BOOST_LOG_TRIVIAL(info) << std::endl
-                              << "!found value: ["
+      BOOST_LOG_TRIVIAL(info)
+                              << "  found value: ["
                               << input_rand
                               << "] hash is ["
-                              << hash_key << "] !"
-                              << std::endl;
+                              << hash_key << " ]";
+
     } else {
-      BOOST_LOG_TRIVIAL(trace) << std ::endl
-                               << "!found value ["
+      BOOST_LOG_TRIVIAL(trace)
+                               << "  found value ["
                                << input_rand
                                << "] hash is ["
-                               << hash_key << "] !"
-                               << std::endl;
+                               << hash_key << " ]";
+
     }
   }
-
 }
 #endif  // LAB_06_MULTITHREADS_ENUMERATION_HPP
