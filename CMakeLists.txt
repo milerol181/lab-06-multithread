@@ -27,12 +27,14 @@ string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 hunter_add_package(Boost COMPONENTS filesystem log system thread)
+hunter_add_package(nlohmann_json)
+find_package(nlohmann_json CONFIG REQUIRED)
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 find_package(Boost CONFIG REQUIRED filesystem log log_setup system thread)
 find_package(Threads)
 
-add_library(${PROJECT_NAME} INTERFACE)
+add_library(${PROJECT_NAME} INTERFACE )
   # enum your files and delete this comment
 
 
@@ -50,7 +52,8 @@ target_link_libraries(demo ${PROJECT_NAME}
         Boost::log
         Boost::thread
         Boost::filesystem
-        Boost::system)
+        Boost::system
+        nlohmann_json::nlohmann_json)
 
 if(BUILD_TESTS)
   add_executable(tests
