@@ -15,13 +15,13 @@ int main(int argc, char *argv[]) {
   std::cin.tie(nullptr);
   init();
   unsigned thread_count;
-  std::string filename;
+  //std::string filename;
   if (argc == 1) {thread_count = std::thread::hardware_concurrency();} else
   if (argc == 2) {thread_count = boost::lexical_cast<unsigned>(argv[1]);}
   //else thread_count = std::thread::hardware_concurrency();
-  //else if (argc == 3) {thread_count = boost::lexical_cast<unsigned>(argv[1]);
-    //        filename = boost::lexical_cast<std::string>(argv[2]);
-      //     }
+  else if (argc == 3) {thread_count = boost::lexical_cast<unsigned>(argv[1]);
+          filename = boost::lexical_cast<std::string>(argv[2]);
+          } else throw std::runtime_error("Wrong parameters!");
 
   BOOST_LOG_TRIVIAL(trace) << "  THREADS COUNT: " << thread_count;
   BOOST_LOG_TRIVIAL(info) << "  THREADS COUNT: " << thread_count;
