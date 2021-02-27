@@ -33,7 +33,8 @@ void enumeration() {
   {
     std::string input_rand = std::to_string(std::rand());
     std::string hash_key = picosha2::hash256_hex_string(input_rand);
-    std::string time = to_simple_string(boost::posix_time::microsec_clock::local_time());
+    std::string time = to_simple_string(boost::posix_time::microsec_clock::
+                                            local_time());
     if (hash_key.substr(hash_key.size() - null_string.size()) ==
         null_string) {
       BOOST_LOG_TRIVIAL(info)
@@ -58,10 +59,7 @@ void enumeration() {
     }
   }
 }
-/*void create_file(std::string filename) {
-  std::ofstream file_json;
-  file_json.open(filename);
-}*/
+
 void json_file(){
   std::ofstream file_json;
   file_json.open(filename + ".json");
