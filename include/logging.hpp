@@ -4,10 +4,16 @@
 
 #ifndef LAB_06_MULTITHREADS_LOGGING_HPP
 #define LAB_06_MULTITHREADS_LOGGING_HPP
+#include <boost/log/expressions/keyword_fwd.hpp>
+#include <boost/log/expressions/keyword.hpp>
+#include <boost/log/expressions/attr_fwd.hpp>
+#include <boost/log/expressions/attr.hpp>
+
+//BOOST_LOG_ATTRIBUTE_KEYWORD(timeline, "Timeline", attrs::timer::value_type);
 const unsigned ten_MiB = 10 * 1024 * 1024;
 void init()
 {
-
+  
   const std::string format = "%TimeStamp% <%Severity%> (%ThreadID%): %Message%";
 
   auto sink_to_file = boost::log::add_file_log(

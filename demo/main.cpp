@@ -12,7 +12,7 @@ void sig_handler_exit(int sig)
 
 int main(int argc, char *argv[]) {
   signal(SIGINT, &sig_handler_exit);
-  std::cin.tie(nullptr);
+  std::cin.tie(NULL);
   init();
   unsigned thread_count;
   //std::string filename;
