@@ -2,11 +2,10 @@
 #include "logging.hpp"
 #include <thread>
 #include <csignal>
-//#include <file_json.hpp>
 #include <nlohmann/json.hpp>
 void sig_handler_exit(int sig)
 {
-  json_file();
+  create_file_json();
   exit(sig);
 }
 

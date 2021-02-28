@@ -23,7 +23,7 @@
 #include <boost/log/support/date_time.hpp>
 #include <boost/date_time/gregorian/greg_month.hpp>
 bool work = true;
-std::vector<nlohmann::json> value;
+std::vector<nlohmann::json> json_value;
 nlohmann::json j;
 std::string filename;
 
@@ -32,39 +32,39 @@ void enumeration() {
   while (work)
   {
     std::string input_rand = std::to_string(std::rand());
-    std::string hash_key = picosha2::hash256_hex_string(input_rand);
-   // std::string time = to_simple_string(boost::posix_time::microsec_clock::
-      //                                      local_time());
-    if (hash_key.substr(hash_key.size() - null_string.size()) ==
+    std::string hash_string = picosha2::hash256_hex_string(input_rand);
+    std::string time_stamp =
+        to_simple_string(boost::posix_time::microsec_clock::local_time());
+    if (hash_string.substr(hash_string.size() - null_string.size()) ==
         null_string) {
       BOOST_LOG_TRIVIAL(info)
         << "  found value: ["
         << input_rand
         << "] hash is ["
-        << hash_key << " ]";
+        << hash_string << " ]";
         j = {
-          {"timestamp", "time" },
-          {"hash is", hash_key},
+          {"timestamp", time_stamp},
+          {"hash is", hash_string},
           {"input", input_rand}
       };
-        value.push_back(j);
+        json_value.emplace_back(j);
 
     } else {
       BOOST_LOG_TRIVIAL(trace)
         << "  found value ["
         << input_rand
         << "] hash is ["
-        << hash_key << " ]";
+        << hash_string << " ]";
 
     }
   }
 }
 
-void json_file(){
+void create_file_json(){
   std::ofstream file_json;
   file_json.open(filename + ".json");
-  for (unsigned i = 0; i < value.size(); ++i){
-    file_json << value[i].dump(4) << "\n";
+  for (unsigned i = 0; i < json_value.size(); ++i){
+    file_json << json_value[i].dump(4) << "\n";
   }
   file_json.close();
 }
